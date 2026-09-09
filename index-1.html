@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="te">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0300">
+<title>Venkatagiri Poleramma Jathara 2026 — Official CDP Launch</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Noto+Serif+Telugu:wght@500;600;700;900&display=swap');
+:root{
+  --bg0:#0a0300; --bg1:#25080a; --bg2:#3a0d06;
+  --gold:#f0c065; --gold-hi:#ffe9b0; --gold-deep:#b5822f;
+  --ember:#ff7b1a; --kumkum:#c21f1f; --cream:#f7e6bd;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg0);color:var(--cream)}
+body{font-family:Cinzel,serif;-webkit-font-smoothing:antialiased}
+#app{height:100%;position:relative;overflow:hidden;background:var(--bg0)}
+
+/* ---------- night sky + temple courtyard glow ---------- */
+.sky{position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 70% 45% at 50% 100%,rgba(255,120,30,.22),transparent 60%),
+    radial-gradient(ellipse 90% 60% at 50% 108%,rgba(180,50,10,.28),transparent 65%),
+    radial-gradient(circle at 18% 14%,rgba(255,225,170,.05),transparent 40%),
+    linear-gradient(180deg,#050201 0%,#150502 38%,#2a0906 68%,#160402 100%);
+}
+.stars{position:absolute;inset:0;z-index:1;opacity:.55}
+.stars i{position:absolute;width:2px;height:2px;background:#ffe;border-radius:50%;opacity:.7;animation:tw 3.6s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.15}50%{opacity:.85}}
+
+.smoke{position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:screen;opacity:.5}
+.smoke i{position:absolute;bottom:8%;width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,190,130,.14),transparent 68%);
+  filter:blur(14px);animation:drift 14s ease-in-out infinite}
+@keyframes drift{0%{transform:translate(0,0) scale(.8);opacity:0}20%{opacity:.6}100%{transform:translate(40px,-260px) scale(1.5);opacity:0}}
+
+/* ---------- gopuram silhouette ---------- */
+.gopuram{position:absolute;left:0;right:0;bottom:0;width:100%;height:24vh;min-height:150px;z-index:3;pointer-events:none}
+.gopuram .tier{fill:#0e0402}
+.gopuram .edge{fill:none;stroke:rgba(240,192,101,.35);stroke-width:1}
+.gopuram .lite{fill:var(--gold);filter:drop-shadow(0 0 4px rgba(255,190,90,.9))}
+.gopuram .kalasha{fill:#160702;stroke:rgba(240,192,101,.5);stroke-width:1}
+
+/* ---------- toranam garland ---------- */
+.toranam{position:absolute;top:0;left:0;right:0;height:34px;z-index:6;display:flex;justify-content:space-around;
+  filter:drop-shadow(0 3px 6px rgba(0,0,0,.5));transform-origin:top center;animation:sway 4.5s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-.5deg)}50%{transform:rotate(.5deg)}}
+.toranam i{width:9px;height:9px;margin-top:6px;border-radius:2px;transform:rotate(45deg);
+  background:linear-gradient(135deg,#8a6d16,#3f5a1c);box-shadow:0 0 6px rgba(120,180,60,.35)}
+.toranam i:nth-child(3n){border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffce6b,#c9720f);
+  box-shadow:0 0 8px rgba(255,150,20,.6);transform:none;width:8px;height:8px}
+
+.lamps{position:absolute;top:40px;left:0;right:0;height:60px;z-index:5;display:flex;justify-content:space-around;padding:0 5%}
+.lamp{width:6px;height:14px;margin-top:10px;border-radius:50%;background:#f2bd62;box-shadow:0 0 16px 5px rgba(255,125,20,.65);animation:flicker 1.3s ease-in-out infinite alternate}
+.lamp:nth-child(2n){animation-delay:.3s}.lamp:nth-child(3n){animation-delay:.6s}
+@keyframes flicker{to{opacity:.5;transform:scale(.8)}}
+
+.particles{position:absolute;inset:0;z-index:7;pointer-events:none}
+.p{position:absolute;width:2px;height:2px;border-radius:50%;background:#f0c36b;opacity:0;animation:rise 6s linear infinite}
+@keyframes rise{0%{opacity:0;transform:translate3d(0,25px,0) scale(.5)}15%{opacity:.8}75%{opacity:.28}100%{opacity:0;transform:translate3d(20px,-210px,0) scale(1.2)}}
+.petal{position:absolute;width:7px;height:7px;border-radius:60% 0 60% 0;background:linear-gradient(135deg,#ffb23e,#e2670c);opacity:0;animation:fall linear infinite}
+@keyframes fall{0%{opacity:0;transform:translate3d(0,-20px,0) rotate(0)}10%{opacity:.9}95%{opacity:.7}100%{opacity:0;transform:translate3d(-40px,340px,0) rotate(340deg)}}
+
+.vignette{position:absolute;inset:0;z-index:8;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.32),transparent 26%,transparent 74%,rgba(0,0,0,.32)),linear-gradient(0deg,rgba(0,0,0,.55),transparent 30%)}
+
+/* ---------- ornate frame ---------- */
+.frame{position:absolute;inset:10px;border:1px solid rgba(237,190,91,.42);z-index:30;pointer-events:none}
+.frame:after{content:"";position:absolute;inset:5px;border:1px solid rgba(237,190,91,.14)}
+.corner{position:absolute;width:26px;height:26px;border:1px solid rgba(240,192,101,.55);z-index:31;pointer-events:none}
+.corner:before{content:"";position:absolute;width:6px;height:6px;border:1px solid rgba(240,192,101,.7);transform:rotate(45deg)}
+.corner.tl{top:14px;left:14px;border-right:0;border-bottom:0}.corner.tl:before{top:-3px;left:-3px}
+.corner.tr{top:14px;right:14px;border-left:0;border-bottom:0}.corner.tr:before{top:-3px;right:-3px}
+.corner.bl{bottom:14px;left:14px;border-right:0;border-top:0}.corner.bl:before{bottom:-3px;left:-3px}
+.corner.br{bottom:14px;right:14px;border-left:0;border-top:0}.corner.br:before{bottom:-3px;right:-3px}
+
+/* ---------- screens ---------- */
+.screen{position:absolute;inset:0;z-index:15;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:50px 24px;
+  transition:opacity .9s cubic-bezier(.2,.7,.2,1),filter .9s;filter:blur(0)}
+.hide{opacity:0!important;pointer-events:none;filter:blur(6px)}
+.eyebrow{font-size:9px;letter-spacing:.34em;color:#e0b55f;text-transform:uppercase;text-shadow:0 2px 12px #000}
+.orn{display:flex;align-items:center;gap:11px;margin:18px 0 24px}.orn:before,.orn:after{content:"";height:1px;width:72px;background:linear-gradient(90deg,transparent,#e0b55f)}.orn:after{transform:scaleX(-1)}
+.gem{width:7px;height:7px;border:1px solid #e0b55f;transform:rotate(45deg);box-shadow:0 0 10px rgba(224,181,95,.35);position:relative}
+.gem:after{content:"";position:absolute;inset:1.5px;background:radial-gradient(circle,#ffe9b0,transparent 70%);opacity:.7}
+
+.hero{font-family:"Noto Serif Telugu",serif;font-weight:900;font-size:clamp(45px,12vw,105px);line-height:.9;color:#ffe2a2;
+  text-shadow:0 5px 28px #000,0 0 34px rgba(255,120,20,.24);position:relative;
+  background:linear-gradient(180deg,#fff3d3 0%,#f0c065 45%,#c9820f 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.jathara{font-family:"Noto Serif Telugu",serif;font-size:clamp(16px,4vw,27px);font-weight:700;color:#f2ce8b;margin-top:18px;text-shadow:0 3px 15px #000}
+.eng{font-size:clamp(11px,2.8vw,18px);letter-spacing:.18em;margin-top:13px;color:#fff0ca}
+.glass{margin-top:28px;padding:10px 18px;border:1px solid rgba(232,188,96,.42);background:rgba(5,2,0,.35);backdrop-filter:blur(8px);font-size:8px;letter-spacing:.3em;color:#e0b55f}
+
+/* ---------- premium 3D gold buttons ---------- */
+.btn{position:relative;margin-top:34px;min-width:250px;padding:18px 30px;border:none;border-radius:2px;overflow:hidden;
+  background:
+    linear-gradient(180deg,rgba(255,232,170,.16),transparent 32%),
+    linear-gradient(180deg,#7a2a0c,#170401 88%);
+  border:1px solid var(--gold);color:var(--gold-hi);font:800 12px Cinzel,serif;letter-spacing:.2em;cursor:pointer;
+  box-shadow:0 14px 40px rgba(0,0,0,.65),0 0 26px rgba(255,110,15,.18),inset 0 1px 0 rgba(255,230,180,.5),inset 0 -10px 20px rgba(0,0,0,.5);
+  transition:transform .15s ease,box-shadow .25s ease;-webkit-tap-highlight-color:transparent}
+.btn:before{content:"";position:absolute;inset:3px;border:1px solid rgba(255,220,150,.28);pointer-events:none}
+.btn .sheen{position:absolute;top:0;left:-60%;width:40%;height:100%;
+  background:linear-gradient(115deg,transparent,rgba(255,255,255,.55),transparent);
+  animation:sheen 3.2s ease-in-out infinite;pointer-events:none}
+@keyframes sheen{0%{left:-60%}55%{left:130%}100%{left:130%}}
+.btn:active{transform:scale(.93);box-shadow:0 0 90px rgba(255,72,5,.5),inset 0 0 40px rgba(255,180,60,.3)}
+.pulse{animation:pulse 1.7s infinite}@keyframes pulse{50%{box-shadow:0 14px 40px rgba(0,0,0,.65),0 0 48px rgba(255,90,10,.35),inset 0 1px 0 rgba(255,230,180,.5),inset 0 -10px 20px rgba(0,0,0,.5)}}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,230,180,.55);transform:scale(0);animation:rip .6s ease-out forwards;pointer-events:none}
+@keyframes rip{to{transform:scale(3.6);opacity:0}}
+
+.title{font-size:clamp(30px,7.5vw,70px);font-weight:800;color:#f8dda0;text-shadow:0 4px 22px #000}
+.copy{font-family:"Noto Serif Telugu",serif;font-size:clamp(15px,3.7vw,24px);line-height:1.7;color:#f1d09a;margin-top:16px;text-shadow:0 3px 14px #000}
+
+/* ---------- countdown with mandala ring ---------- */
+.countWrap{position:relative;display:grid;place-items:center;width:min(78vw,340px);aspect-ratio:1}
+.mandala{position:absolute;inset:0;width:100%;height:100%;opacity:.55;animation:spin 14s linear infinite}
+.mandala.rev{animation-direction:reverse;opacity:.3;animation-duration:20s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.count{font-size:clamp(120px,32vw,240px);line-height:.78;font-weight:900;color:#ffe1a0;text-shadow:0 0 70px rgba(255,78,4,.58),0 6px 25px #000;animation:num .9s cubic-bezier(.12,.8,.16,1)}
+@keyframes num{0%{opacity:0;transform:scale(1.65);filter:blur(10px)}25%{opacity:1}100%{transform:scale(1);filter:blur(0)}}
+.countlabel{font-size:9px;letter-spacing:.38em;color:#ddb05a}
+
+/* ---------- reveal ---------- */
+#reveal{background:#010100}
+.posterFrame{width:min(84vw,84vh,700px);aspect-ratio:1;position:relative;display:grid;place-items:center}
+.rays{position:absolute;inset:-40%;z-index:1;opacity:0;background:
+  repeating-conic-gradient(from 0deg,rgba(255,210,120,.35) 0deg 4deg,transparent 4deg 18deg);
+  border-radius:50%;filter:blur(1px);transition:opacity 1.4s;animation:rayspin 26s linear infinite}
+.rays.on{opacity:.55}
+@keyframes rayspin{to{transform:rotate(360deg)}}
+.poster{width:88%;height:88%;object-fit:contain;border-radius:50%;opacity:0;transform:scale(.48);filter:brightness(.1) blur(20px);transition:opacity 2.4s,transform 4.5s cubic-bezier(.08,.74,.1,1),filter 4s;z-index:3}
+.poster.show{opacity:1;transform:scale(1);filter:brightness(1) blur(0)}
+.medallion{position:absolute;inset:0;z-index:2;display:grid;place-items:center;opacity:0;transition:opacity 1.6s;text-align:center}
+.medallion.show{opacity:1}
+.medallion .ring{position:absolute;inset:4%;border-radius:50%;border:2px solid var(--gold);box-shadow:0 0 70px rgba(255,120,20,.35),inset 0 0 40px rgba(255,150,30,.2)}
+.medallion .ring2{position:absolute;inset:9%;border-radius:50%;border:1px solid rgba(240,192,101,.5)}
+.medallion .txt{font-family:"Noto Serif Telugu",serif;font-weight:900;font-size:clamp(26px,7vw,44px);color:#ffe9b0;text-shadow:0 4px 20px #000,0 0 30px rgba(255,140,30,.4)}
+.medallion .sub{margin-top:10px;font-size:10px;letter-spacing:.3em;color:#e0b55f}
+.posterFrame:after{content:"";position:absolute;inset:-8px;border:1px solid rgba(231,180,75,.75);border-radius:50%;box-shadow:0 0 90px rgba(255,73,5,.32);opacity:0;transition:2.5s}
+.posterFrame.live:after{opacity:1}
+.burst{position:absolute;inset:-110%;z-index:4;opacity:0;background:radial-gradient(circle,rgba(255,245,190,1),rgba(255,116,8,.48) 7%,transparent 30%);border-radius:50%}
+.burst.fire{animation:burst 3s ease-out forwards}@keyframes burst{0%{opacity:0;transform:scale(.01)}16%{opacity:1}100%{opacity:0;transform:scale(1.3)}}
+.flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:9}.flash.fire{animation:flash 1.2s}@keyframes flash{0%{opacity:0}7%{opacity:.92}20%{opacity:.12}100%{opacity:0}}
+
+.credit{padding:30px 26px;border-top:1px solid rgba(222,174,82,.42);border-bottom:1px solid rgba(222,174,82,.42);background:rgba(0,0,0,.3);backdrop-filter:blur(5px)}
+.credit strong{display:block;font-size:clamp(16px,4vw,29px);color:#f7dda0}
+.credit small{display:block;margin-top:11px;font-size:9px;letter-spacing:.15em;color:#e2cda6;opacity:.75}
+
+/* ---------- audio toggle ---------- */
+.snd{position:absolute;top:16px;right:16px;z-index:40;width:34px;height:34px;border-radius:50%;
+  border:1px solid rgba(240,192,101,.5);background:rgba(5,2,0,.5);backdrop-filter:blur(6px);
+  color:var(--gold);font-size:14px;display:grid;place-items:center;cursor:pointer}
+
+@media (prefers-reduced-motion:reduce){
+  .sheen,.pulse,.mandala,.rays,.toranam,.lamp,.p,.petal{animation:none!important}
+}
+</style></head>
+<body><div id="app">
+
+<div class="sky"></div>
+<div class="stars" id="stars"></div>
+<div class="smoke" id="smoke"></div>
+
+<svg class="gopuram" viewBox="0 0 1200 260" preserveAspectRatio="xMidYMax slice" id="gopuram">
+  <rect class="tier" x="60" y="180" width="1080" height="80"/>
+  <rect class="edge" x="60" y="180" width="1080" height="80"/>
+  <rect class="tier" x="180" y="120" width="840" height="62"/>
+  <rect class="edge" x="180" y="120" width="840" height="62"/>
+  <rect class="tier" x="290" y="72" width="620" height="50"/>
+  <rect class="edge" x="290" y="72" width="620" height="50"/>
+  <rect class="tier" x="390" y="34" width="420" height="40"/>
+  <rect class="edge" x="390" y="34" width="420" height="40"/>
+  <rect class="tier" x="470" y="6" width="260" height="30"/>
+  <rect class="edge" x="470" y="6" width="260" height="30"/>
+  <circle class="kalasha" cx="600" cy="-6" r="9"/>
+  <line x1="600" y1="-14" x2="600" y2="6" stroke="rgba(240,192,101,.5)" stroke-width="1.5"/>
+</svg>
+
+<div class="toranam" id="toranam"></div>
+<div class="lamps"><i class="lamp"></i><i class="lamp"></i><i class="lamp"></i><i class="lamp"></i><i class="lamp"></i><i class="lamp"></i><i class="lamp"></i><i class="lamp"></i><i class="lamp"></i><i class="lamp"></i><i class="lamp"></i></div>
+<div class="particles" id="particles"></div>
+<div class="vignette"></div>
+<div class="frame"></div>
+<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+<button class="snd" id="snd" aria-label="toggle sound">🔊</button>
+
+<section id="s0" class="screen">
+<div class="eyebrow">SRI SRI SRI POLERAMMA THALLI • JATHARA 2026</div>
+<div class="orn"><i class="gem"></i><i class="gem"></i><i class="gem"></i></div>
+<div class="hero">వెంకటగిరి</div><div class="jathara">శ్రీశ్రీశ్రీ పోలేరమ్మ తల్లి జాతర</div><div class="eng">THE GUARDIAN OF VENKATAGIRI</div>
+<div class="glass">OFFICIAL VVIP DIGITAL CDP LAUNCH</div>
+<button class="btn" id="enter"><span class="sheen"></span>ENTER THE CEREMONY</button>
+</section>
+
+<section id="s1" class="screen hide"><div class="eyebrow">VENKATAGIRI • A NIGHT OF DEVOTION</div><div class="orn"><i class="gem"></i></div><div class="title">జాతర మొదలైంది…</div><div class="copy">డప్పుల మోత… దీపాల వెలుగు…<br>భక్తుల సందడి… వెంకటగిరి మొత్తం ఒకే వైభవం.</div></section>
+
+<section id="s2" class="screen hide"><div class="eyebrow">THE DIVINE PRESENCE</div><div class="orn"><i class="gem"></i><i class="gem"></i></div><div class="title">THE GUARDIAN AWAKENS</div><div class="copy">వెంకటగిరి నేలపై నమ్మకానికి ప్రతిరూపం…<br>ఇప్పుడు డిజిటల్ తెరపై ఆవిష్కృతం కానుంది.</div></section>
+
+<section id="s3" class="screen hide"><div class="eyebrow">THE MOMENT HAS ARRIVED</div><div class="orn"><i class="gem"></i><i class="gem"></i><i class="gem"></i></div><div class="title">ARE YOU READY?</div><div class="copy">ఈ ఆవిష్కరణకు శ్రీకారం చుట్టండి.</div>
+<button class="btn pulse" id="launch"><span class="sheen"></span>⚡ LAUNCH THE CDP</button></section>
+
+<section id="count" class="screen hide">
+<div class="countlabel">THE REVEAL IS BEGINNING</div>
+<div class="countWrap">
+  <svg class="mandala" viewBox="0 0 200 200"><g fill="none" stroke="#f0c065" stroke-width="1">
+    <circle cx="100" cy="100" r="92"/><circle cx="100" cy="100" r="78"/>
+    <g id="mpet"></g>
+  </g></svg>
+  <svg class="mandala rev" viewBox="0 0 200 200"><g fill="none" stroke="#e0b55f" stroke-width="1"><circle cx="100" cy="100" r="60"/></g></svg>
+  <div class="count" id="num">10</div>
+</div>
+<div class="countlabel">VENKATAGIRI • POLERAMMA THALLI JATHARA</div></section>
+
+<section id="reveal" class="screen hide">
+<div class="posterFrame" id="pf">
+  <div class="rays" id="rays"></div>
+  <div class="burst" id="burst"></div>
+  <img id="poster" class="poster" src="cdp-poster.jpg" alt="Venkatagiri Poleramma Thalli Jathara 2026 CDP">
+  <div class="medallion" id="medallion">
+    <div class="ring"></div><div class="ring2"></div>
+    <div><div class="txt">శ్రీ పోలేరమ్మ<br>తల్లి జాతర</div><div class="sub">CDP · 2026 · VENKATAGIRI</div></div>
+  </div>
+</div>
+<div class="flash" id="flash"></div>
+</section>
+
+<section id="final" class="screen hide"><div class="eyebrow">OFFICIALLY LAUNCHED BY</div><div class="orn"><i class="gem"></i><i class="gem"></i><i class="gem"></i></div>
+<div class="credit"><strong>Sri Kurugondla Ramakrishna Garu</strong><small>MEMBER OF LEGISLATIVE ASSEMBLY • VENKATAGIRI</small></div>
+<button class="btn" id="replay"><span class="sheen"></span>REPLAY CEREMONY</button></section>
+
+</div>
+<script>
+const $=id=>document.getElementById(id),wait=m=>new Promise(r=>setTimeout(r,m));
+const screens=["s0","s1","s2","s3","count","reveal","final"].map($);
+function show(x){screens.forEach(s=>s.classList.add("hide"));x.classList.remove("hide")}
+
+/* scenery: stars, smoke, embers, petals, toranam garland, mandala petals */
+for(let i=0;i<50;i++){let s=document.createElement("i");s.style.left=Math.random()*100+"%";s.style.top=Math.random()*55+"%";s.style.animationDelay=Math.random()*3.6+"s";$("stars").appendChild(s)}
+for(let i=0;i<6;i++){let s=document.createElement("i");s.style.left=10+Math.random()*80+"%";s.style.animationDelay=Math.random()*14+"s";s.style.animationDuration=11+Math.random()*8+"s";$("smoke").appendChild(s)}
+for(let i=0;i<65;i++){let p=document.createElement("i");p.className="p";p.style.left=Math.random()*100+"%";p.style.top=45+Math.random()*55+"%";p.style.animationDelay=Math.random()*6+"s";p.style.animationDuration=4+Math.random()*5+"s";$("particles").appendChild(p)}
+for(let i=0;i<16;i++){let p=document.createElement("i");p.className="petal";p.style.left=Math.random()*100+"%";p.style.animationDelay=Math.random()*10+"s";p.style.animationDuration=7+Math.random()*6+"s";$("particles").appendChild(p)}
+for(let i=0;i<26;i++){let g=document.createElement("i");$("toranam").appendChild(g)}
+{let mp=$("mpet"),ns="http://www.w3.org/2000/svg";for(let i=0;i<16;i++){let a=(i/16)*Math.PI*2,x1=100+Math.cos(a)*78,y1=100+Math.sin(a)*78,x2=100+Math.cos(a)*92,y2=100+Math.sin(a)*92;let l=document.createElementNS(ns,"line");l.setAttribute("x1",x1);l.setAttribute("y1",y1);l.setAttribute("x2",x2);l.setAttribute("y2",y2);l.setAttribute("stroke","#f0c065");l.setAttribute("stroke-width","1");mp.appendChild(l)}}
+/* gopuram tier lights */
+{let g=$("gopuram"),tiers=[{x:60,w:1080,y:180},{x:180,w:840,y:120},{x:290,w:620,y:72},{x:390,w:420,y:34},{x:470,w:260,y:6}];
+tiers.forEach(t=>{let n=Math.max(4,Math.round(t.w/70));for(let i=0;i<n;i++){let cx=t.x+ (t.w/(n-1||1))*i;let c=document.createElementNS("http://www.w3.org/2000/svg","circle");c.setAttribute("cx",cx);c.setAttribute("cy",t.y);c.setAttribute("r",2.4);c.setAttribute("class","lite");c.style.animation=`flicker ${1+Math.random()}s ease-in-out ${Math.random()}s infinite alternate`;g.appendChild(c)}})}
+
+/* poster fallback: if no cdp-poster.jpg present, keep medallion emblem as the reveal */
+$("poster").addEventListener("error",()=>{$("poster").style.display="none"});
+
+/* ripple on buttons */
+document.querySelectorAll(".btn").forEach(b=>b.addEventListener("click",e=>{
+  let r=document.createElement("span"),rect=b.getBoundingClientRect(),d=Math.max(rect.width,rect.height);
+  r.className="ripple";r.style.width=r.style.height=d+"px";
+  r.style.left=(e.clientX-rect.left-d/2)+"px";r.style.top=(e.clientY-rect.top-d/2)+"px";
+  b.appendChild(r);setTimeout(()=>r.remove(),650);
+}));
+
+/* ---------------- audio engine: synthesized devotional soundscape ---------------- */
+let ac,master,droneG,drumG,bellG,sfxG,droneOn=false,drumTimer=null,muted=false;
+function initAudio(){
+  if(ac)return;
+  ac=new(window.AudioContext||window.webkitAudioContext)();
+  master=ac.createGain();master.gain.value=.9;master.connect(ac.destination);
+  droneG=ac.createGain();droneG.gain.value=.05;droneG.connect(master);
+  drumG=ac.createGain();drumG.gain.value=.16;drumG.connect(master);
+  bellG=ac.createGain();bellG.gain.value=.14;bellG.connect(master);
+  sfxG=ac.createGain();sfxG.gain.value=.16;sfxG.connect(master);
+}
+function resume(){initAudio();if(ac.state==="suspended")ac.resume()}
+function tone(f,d=.12,v=.06,type="sine",delay=0,dest=sfxG){
+  resume();let t=ac.currentTime+delay,o=ac.createOscillator(),g=ac.createGain();
+  o.type=type;o.frequency.value=f;g.gain.setValueAtTime(.0001,t);
+  g.gain.exponentialRampToValueAtTime(v,t+.012);g.gain.exponentialRampToValueAtTime(.0001,t+d);
+  o.connect(g).connect(dest);o.start(t);o.stop(t+d+.03)
+}
+function bell(){[261.6,392,523.3,659.3].forEach((f,i)=>tone(f,1.8,.13,"sine",i*.07,bellG))}
+function impact(){tone(75,.38,.24,"sine",0,sfxG);tone(48,.55,.17,"sine",.08,sfxG)}
+function startDrone(){
+  if(droneOn)return;droneOn=true;resume();
+  [110,165,220].forEach((f,i)=>{
+    let o=ac.createOscillator(),g=ac.createGain();o.type="sine";o.frequency.value=f;
+    g.gain.value=i===0?.06:.025;o.connect(g).connect(droneG);o.start();
+    let lfo=ac.createOscillator(),lg=ac.createGain();lfo.frequency.value=.08+i*.03;lg.gain.value=.012;
+    lfo.connect(lg).connect(g.gain);lfo.start();
+  });
+}
+function drumHit(kind){
+  resume();let t=ac.currentTime;
+  if(kind==="dha"){
+    let o=ac.createOscillator(),g=ac.createGain();o.type="sine";o.frequency.setValueAtTime(150,t);o.frequency.exponentialRampToValueAtTime(60,t+.15);
+    g.gain.setValueAtTime(.001,t);g.gain.exponentialRampToValueAtTime(.5,t+.008);g.gain.exponentialRampToValueAtTime(.001,t+.22);
+    o.connect(g).connect(drumG);o.start(t);o.stop(t+.24);
+  }else{
+    let b=ac.createBuffer(1,ac.sampleRate*.08,ac.sampleRate),d=b.getChannelData(0);
+    for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);
+    let n=ac.createBufferSource();n.buffer=b;let g=ac.createGain();g.gain.value=.22;
+    let hp=ac.createBiquadFilter();hp.type="highpass";hp.frequency.value=1800;
+    n.connect(hp).connect(g).connect(drumG);n.start(t);
+  }
+}
+let drumStep=0,drumPattern=["dha","tak","tak","dha","tak","dha","tak","tak"];
+function scheduleDrum(interval){
+  clearTimeout(drumTimer);
+  (function loop(){
+    if(!muted)drumHit(drumPattern[drumStep%drumPattern.length]);
+    drumStep++;drumTimer=setTimeout(loop,interval);
+  })();
+}
+$("snd").onclick=()=>{
+  resume();muted=!muted;master.gain.setTargetAtTime(muted?0:.9,ac?ac.currentTime:0,.05);
+  $("snd").textContent=muted?"🔇":"🔊";
+};
+
+/* ---------------- ceremony flow ---------------- */
+$("enter").onclick=async()=>{
+  resume();startDrone();scheduleDrum(680);bell();
+  show($("s1"));await wait(3200);show($("s2"));await wait(3500);show($("s3"))
+};
+$("launch").onclick=async()=>{
+  impact();scheduleDrum(360);await wait(500);show($("count"));
+  for(let n=10;n>=1;n--){
+    $("num").textContent=n;$("num").style.animation="none";void $("num").offsetWidth;$("num").style.animation="num .9s cubic-bezier(.12,.8,.16,1)";
+    tone(n<=3?420:760,.11,n<=3?.12:.05,n<=3?"sawtooth":"square",0,sfxG);
+    if(n<=5)tone(90,.2,.06,"sine",.06,sfxG);
+    if(n<=4)scheduleDrum(240-n*8);
+    await wait(1000)
+  }
+  clearTimeout(drumTimer);impact();bell();await wait(550);
+  show($("reveal"));
+  $("poster").classList.remove("show");$("pf").classList.remove("live");
+  $("burst").classList.remove("fire");$("flash").classList.remove("fire");
+  $("rays").classList.remove("on");$("medallion").classList.remove("show");
+  void $("burst").offsetWidth;void $("flash").offsetWidth;
+  $("burst").classList.add("fire");$("flash").classList.add("fire");$("rays").classList.add("on");
+  await wait(320);
+  $("poster").classList.add("show");$("pf").classList.add("live");
+  if($("poster").style.display==="none"||!$("poster").complete||$("poster").naturalWidth===0){$("medallion").classList.add("show")}
+  bell();scheduleDrum(520);
+  await wait(7000);
+  clearTimeout(drumTimer);show($("final"))
+};
+$("replay").onclick=()=>{clearTimeout(drumTimer);show($("s3"))};
+</script></body></html>
